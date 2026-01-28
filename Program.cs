@@ -71,6 +71,7 @@ namespace User_Management_System
             Console.WriteLine("5 - Save To File");
             Console.WriteLine("6 - Exit");
             Console.WriteLine("7 - Delete User");
+            Console.WriteLine("8 - Update User");
             Console.Write("Choose: ");
         }
 
