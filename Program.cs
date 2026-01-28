@@ -51,6 +51,10 @@ namespace User_Management_System
                         DeleteUser();
                         break;
 
+                    case "8":
+                        UpdatUser();
+                        break;
+
                     default:
                         Console.WriteLine("Invalid choice");
                         break;
@@ -207,6 +211,40 @@ namespace User_Management_System
 
             Console.WriteLine("User not found.");
         }
+        static void UpdatUser()
+        {
+            Console.Write("Enter name to update: ");
+            string search = Console.ReadLine();
+
+            for (int i = 0; i < names.Count; i++)
+            {
+                if (names[i].Equals(search, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("Leave empty to keep old value.");
+
+                    Console.Write($"New name ({names[i]}): ");
+                    string newName = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(newName))
+                        names[i] = newName;
+
+                    Console.Write($"New age ({ages[i]}): ");
+                    string ageInput = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(ageInput))
+                        ages[i] = int.Parse(ageInput);
+
+                    Console.Write($"New salary ({salaries[i]}): ");
+                    string salaryInput = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(salaryInput))
+                        salaries[i] = double.Parse(salaryInput);
+
+                    Console.WriteLine("User updated successfully.");
+                    return;
+                }
+            }
+
+            Console.WriteLine("User not found.");
+        }
+
 
     }
 }
