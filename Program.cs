@@ -85,7 +85,7 @@ namespace User_Management_System
             Console.WriteLine("----------------------------------");
 
             Console.WriteLine("7 - Delete User");
-            Console.WriteLine("8 - Show Users Sorted By Salary");
+            Console.WriteLine("8 - Update user");
             Console.WriteLine("9 - Show Users Sorted By Salary");
 
             Console.WriteLine("==================================");
@@ -107,11 +107,9 @@ namespace User_Management_System
                     return;
                 }
 
-                Console.Write("Enter your age: ");
-                int age = int.Parse(Console.ReadLine());
+                int age = ReadInt("Enter your age: ");
+                double salary = ReadDouble("Enter your salary: ");
 
-                Console.Write("Enter your salary: ");
-                double salary = double.Parse(Console.ReadLine());
 
                 names.Add(name);
                 ages.Add(age);
@@ -249,13 +247,23 @@ namespace User_Management_System
 
                     Console.Write($"New age ({ages[i]}): ");
                     string ageInput = Console.ReadLine();
-                    if (!string.IsNullOrWhiteSpace(ageInput))
-                        ages[i] = int.Parse(ageInput);
+                    if (!string.IsNullOrWhiteSpace(ageInput) &&
+                        int.TryParse(ageInput, out int newAge))
+                    {
+                        ages[i] = newAge;
+                    }
 
                     Console.Write($"New salary ({salaries[i]}): ");
                     string salaryInput = Console.ReadLine();
-                    if (!string.IsNullOrWhiteSpace(salaryInput))
-                        salaries[i] = double.Parse(salaryInput);
+                    if (!string.IsNullOrWhiteSpace(salaryInput) &&
+                    double.TryParse(salaryInput, out double newSalary))
+                    {
+                        salaries[i] = newSalary;
+                    }
+                    else if (!string.IsNullOrWhiteSpace(salaryInput))
+                    {
+                        Console.WriteLine("Invalid salary, value not changed.");
+                    }
 
                     Console.WriteLine("User updated successfully.");
                     return;
@@ -306,6 +314,31 @@ namespace User_Management_System
         {
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadKey();
+        }
+        static int ReadInt(string message)
+        {
+            int value;
+            while (true)
+            {
+                Console.Write(message);
+                if (int.TryParse(Console.ReadLine(), out value))
+                 return value;
+
+                Console.WriteLine("Invalid number, try again.");
+            }
+        }
+
+        static double ReadDouble(string message)
+        {   
+            double value;
+            while (true)
+            {
+                Console.Write(message);
+                if (double.TryParse(Console.ReadLine(), out value))
+                return value;
+
+                Console.WriteLine("Invalid number, try again.");
+            }
         }
 
 
