@@ -18,7 +18,8 @@ namespace User_Management_System
             while (true)
             {
                 ShowMenu();
-                string choice = Console.ReadLine();
+                string choice = ReadChoice();
+
 
                 switch (choice)
                 {
@@ -93,6 +94,12 @@ namespace User_Management_System
             {
                 Console.WriteLine("Invalid input.");
             }
+        }
+        
+        static string ReadChoice()
+        {
+            Console.Write("Choose: ");
+            return Console.ReadLine()?.Trim();
         }
 
         static void ShowUsers()
