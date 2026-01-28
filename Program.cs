@@ -46,6 +46,10 @@ namespace User_Management_System
                     case "6":
                         SaveToFile();
                         return;
+                    
+                    case "7":
+                        DeleteUser();
+                        break;
 
                     default:
                         Console.WriteLine("Invalid choice");
@@ -62,6 +66,7 @@ namespace User_Management_System
             Console.WriteLine("4 - Average Salary");
             Console.WriteLine("5 - Save To File");
             Console.WriteLine("6 - Exit");
+            Console.WriteLine("7 - Delete User");
             Console.Write("Choose: ");
         }
 
@@ -181,5 +186,27 @@ namespace User_Management_System
                 salaries.Add(double.Parse(parts[2]));
             }
         }
+
+        static void DeleteUser()
+        {
+            Console.Write("Enter name to delete: ");
+            string name = Console.ReadLine();
+
+            for (int i = 0; i < names.Count; i++)
+            {
+                if (names[i].Equals(name, StringComparison.OrdinalIgnoreCase))
+                {
+                    names.RemoveAt(i);
+                    ages.RemoveAt(i);
+                    salaries.RemoveAt(i);
+
+                    Console.WriteLine("User deleted successfully.");
+                    return;
+                }
+            }
+
+            Console.WriteLine("User not found.");
+        }
+
     }
 }
