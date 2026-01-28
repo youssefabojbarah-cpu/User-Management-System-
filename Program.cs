@@ -29,6 +29,7 @@ namespace User_Management_System
 
                     case "2":
                         ShowUsers();
+                        Pause();
                         break;
 
                     case "3":
@@ -68,17 +69,30 @@ namespace User_Management_System
 
         static void ShowMenu()
         {
-            Console.WriteLine("\n1 - Add User");
+            ClearScreen();
+
+            Console.WriteLine("==================================");
+            Console.WriteLine("   USER MANAGEMENT SYSTEM");
+            Console.WriteLine("==================================");
+
+            Console.WriteLine("1 - Add User");
             Console.WriteLine("2 - Show Users");
             Console.WriteLine("3 - Search User");
             Console.WriteLine("4 - Average Salary");
             Console.WriteLine("5 - Save To File");
             Console.WriteLine("6 - Exit");
+
+            Console.WriteLine("----------------------------------");
+
             Console.WriteLine("7 - Delete User");
-            Console.WriteLine("8 - Update User");
+            Console.WriteLine("8 - Show Users Sorted By Salary");
             Console.WriteLine("9 - Show Users Sorted By Salary");
-            Console.Write("Choose: ");
+
+            Console.WriteLine("==================================");
+
+            Console.Write("Choose option: ");
         }
+
 
         static void AddUser()
         {
@@ -284,7 +298,15 @@ namespace User_Management_System
                 Console.WriteLine($"{names[i]} - Age: {ages[i]} - Salary: {salaries[i]}");
             }
         }
-
+        static void ClearScreen()
+        {
+            Console.Clear();
+        }
+        static void Pause()
+        {
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
+        }
 
 
     }
