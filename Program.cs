@@ -54,6 +54,10 @@ namespace User_Management_System
                     case "8":
                         UpdatUser();
                         break;
+                    
+                    case "9":
+                        ShowUsersSortedBySalary();
+                        break;
 
                     default:
                         Console.WriteLine("Invalid choice");
@@ -72,6 +76,7 @@ namespace User_Management_System
             Console.WriteLine("6 - Exit");
             Console.WriteLine("7 - Delete User");
             Console.WriteLine("8 - Update User");
+            Console.WriteLine("9 - Show Users Sorted By Salary");
             Console.Write("Choose: ");
         }
 
@@ -245,6 +250,41 @@ namespace User_Management_System
 
             Console.WriteLine("User not found.");
         }
+
+        static void ShowUsersSortedBySalary()
+        {
+            if (names.Count == 0)
+            {
+                Console.WriteLine("No users found.");
+                return;
+            }
+
+            List<int> indexes = new List<int>();
+
+            for (int i = 0; i < salaries.Count; i++)
+                indexes.Add(i);
+               
+            for (int i = 0; i < indexes.Count; i++)
+            {
+                for (int j = i + 1; j < indexes.Count; j++)
+                {
+                    if (salaries[indexes[i]] > salaries[indexes[j]])
+                    {
+                        int temp = indexes[i];
+                        indexes[i] = indexes[j];
+                        indexes[j] = temp;
+                    }
+                }
+            }
+
+            Console.WriteLine("Users sorted by salary:");
+
+            foreach (int i in indexes)
+            {
+                Console.WriteLine($"{names[i]} - Age: {ages[i]} - Salary: {salaries[i]}");
+            }
+        }
+
 
 
     }
